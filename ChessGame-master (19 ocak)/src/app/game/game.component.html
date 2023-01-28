@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="content">
+        <div class="col">
+            <div class="header">
+                <h1>CHESS GAME</h1>
+            </div>
+            <div class="board">
+                <div class="alphabet">
+                    <div class="abc" *ngFor="let abc of alphabet">
+                        <p>{{abc}}</p>
+                    </div>
+                </div>
+                <div class="table">
+                    <div class="numbers">
+                        <div class="number" *ngFor="let num of numbers">
+                            <p>{{num}}</p>
+                        </div>
+                    </div>
+                    <div class="column" (drop)="drop($event)"
+                    (dragover)="allowDrop($event)">
+                        <div class="row" *ngFor="let row of location; let i=index" #row>
+                            <div class="location" *ngFor="let loc of row; let j=index" #location >
+                                <div class="loc" *ngIf="loc.piece.image.length>0" else loctwo [class.highlight]="loc.highlight" (click)="select(i,j)">
+                                    <img [src]="loc.piece.image" draggable="true" (dragstart)="drag($event)" [id]="i"
+                                        style="width: 40px; height: 40px;" />
+                                </div>
+                                <div class="locktwo" [class.highlight]="loc.highlight" (click)="select(i,j)">
+                                    <ng-template #loctwo>{{loc.piece.image}}</ng-template>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="numbers">
+                        <div class="number" *ngFor="let num of numbers">
+                            <p>{{num}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="alphabet">
+                    <div class="abc" *ngFor="let abc of alphabet">
+                        <p>{{abc}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
